@@ -9,6 +9,6 @@ class EventRepositoryImpl() : EventRepository {
     }
 
     override suspend fun getEventById(id: String): Result<Event> {
-        return Result.success(Event("id", "test", 100))
+        return Result.success(Event(0, "test", 100))
     }
 }

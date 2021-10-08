@@ -4,16 +4,16 @@ import com.gina.gienamobile.data.enums.Roles
 import com.google.gson.annotations.SerializedName
 
 data class User(
-    @SerializedName("ID")
-    val id: String,
-    @SerializedName("Username")
+    @SerializedName("id")
+    val id: Number,
+    @SerializedName("username")
     val username: String,
-    @SerializedName("moneyQty")
+    @SerializedName("money_qty")
     val moneyQty: Number,
-    @SerializedName("Role")
+    @SerializedName("role")
     val role: Roles,
-    @SerializedName("Questions")
+    @SerializedName("questions")
     val questions: List<Question>? = null,
-    @SerializedName("Events")
+    @SerializedName("events")
     val events: List<Event>? = null
 )
