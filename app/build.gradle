@@ -68,4 +68,13 @@ dependencies {
     implementation dependencies.libraryDependencies.retrofitCoroutinesAdapter
     implementation dependencies.libraryDependencies.okhttpLoger
     implementation dependencies.libraryDependencies.gson
+
+    //CardStackView
+    implementation "com.yuyakaido.android:card-stack-view:2.3.4"
+
+    //RoundedImageView
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.4.7'
+
 }
