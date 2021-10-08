@@ -61,4 +61,11 @@ dependencies {
     implementation dependencies.androidXDependencies.lifecycleRuntimeKtx
     implementation dependencies.androidXDependencies.lifecycleExtensions
     implementation dependencies.androidXDependencies.swipeToRefresh
+
+    //libraries
+    implementation dependencies.libraryDependencies.retrofit
+    implementation dependencies.libraryDependencies.retrofitGsonConverter
+    implementation dependencies.libraryDependencies.retrofitCoroutinesAdapter
+    implementation dependencies.libraryDependencies.okhttpLoger
+    implementation dependencies.libraryDependencies.gson
 }
