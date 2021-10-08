@@ -5,8 +5,10 @@ import com.google.gson.annotations.SerializedName
 data class Question(
     @SerializedName("ID")
     val id: String,
-    @SerializedName("Name")
-    val name: String,
     @SerializedName("Text")
-    val text: String
+    val text: String,
+    @SerializedName("NegativeAnswer")
+    val negativeDecisionAnswer: Answer,
+    @SerializedName("PositiveAnswer")
+    val positiveDecisionAnswer: Answer
 )

@@ -5,8 +5,8 @@ import com.google.gson.annotations.SerializedName
 data class Event(
     @SerializedName("ID")
     val id: String,
-    @SerializedName("Name")
-    val name: String,
-    @SerializedName("Text")
-    val text: String
+    @SerializedName("EventText")
+    val eventText: String,
+    @SerializedName("MoneyQTY")
+    val moneyQty: Number,
 )
