@@ -1,4 +1,4 @@
-package com.gina.gienamobile.presentation
+package com.gina.gienamobile.presentation.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

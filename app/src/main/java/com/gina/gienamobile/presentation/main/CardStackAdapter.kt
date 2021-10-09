@@ -1,4 +1,4 @@
-package com.gina.gienamobile.presentation
+package com.gina.gienamobile.presentation.main
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,15 +6,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.gina.gienamobile.R
+import com.gina.gienamobile.R.layout
 import com.gina.gienamobile.domain.model.CardLocal
+import com.gina.gienamobile.presentation.main.CardStackAdapter.ViewHolder
 
 class CardStackAdapter(
     private var spots: MutableList<CardLocal> = mutableListOf()
-) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        return ViewHolder(inflater.inflate(R.layout.item_event, parent, false))
+        return ViewHolder(inflater.inflate(layout.item_event, parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

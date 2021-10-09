@@ -1,4 +1,4 @@
-package com.gina.gienamobile
+package com.gina.gienamobile.presentation.main
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,6 +6,9 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.gina.gienamobile.R
+import com.gina.gienamobile.R.drawable
+import com.gina.gienamobile.R.layout
 
 class VatabeView @JvmOverloads constructor(
     context: Context,
@@ -17,7 +20,7 @@ class VatabeView @JvmOverloads constructor(
     private val ivVatabe: ImageView by lazy { findViewById(R.id.ivVatabe) }
 
     init {
-        inflate(context, R.layout.view_vatabe, this)
+        inflate(context, layout.view_vatabe, this)
     }
 
     fun setSpeech(speech: String) {
@@ -25,11 +28,11 @@ class VatabeView @JvmOverloads constructor(
     }
 
     fun setGladnessMood() {
-        ivVatabe.setImageResource(R.drawable.ic_vatabe_gladness)
+        ivVatabe.setImageResource(drawable.ic_vatabe_gladness)
     }
 
     fun setShockMood() {
-        ivVatabe.setImageResource(R.drawable.ic_vatabe_shock)
+        ivVatabe.setImageResource(drawable.ic_vatabe_shock)
     }
 
     private fun increaseBubbleHeight() {

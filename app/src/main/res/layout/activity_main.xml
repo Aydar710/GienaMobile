@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.MainActivity">
+    tools:context=".presentation.main.MainActivity">
 
     <View
         android:id="@+id/viewAccountInfo"
@@ -53,11 +53,11 @@
         android:id="@+id/tvQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textAlignment="center"
-        android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@id/card_stack_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
         app:layout_constraintTop_toBottomOf="@id/clHeader"
         app:layout_constraintVertical_bias="0.4" />
 
-    <com.gina.gienamobile.VatabeView
+    <com.gina.gienamobile.presentation.main.VatabeView
         android:id="@+id/vatabeView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -84,5 +84,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

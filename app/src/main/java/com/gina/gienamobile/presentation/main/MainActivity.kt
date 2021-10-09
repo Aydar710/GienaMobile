@@ -1,4 +1,4 @@
-package com.gina.gienamobile.presentation
+package com.gina.gienamobile.presentation.main
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
@@ -10,8 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gina.gienamobile.R
-import com.gina.gienamobile.R.layout
 import com.gina.gienamobile.databinding.ActivityMainBinding
+import com.gina.gienamobile.presentation.tutorial.TutorialFragment
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
@@ -19,7 +19,7 @@ import com.yuyakaido.android.cardstackview.StackFrom
 import com.yuyakaido.android.cardstackview.SwipeableMethod
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainActivity : AppCompatActivity(), CardStackListener {
+class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListener {
 
     private val viewModel: MainViewModel by viewModel()
     private val binding: ActivityMainBinding by viewBinding()
@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity(), CardStackListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(layout.activity_main)
 
         supportActionBar?.hide()
 
@@ -111,6 +110,12 @@ class MainActivity : AppCompatActivity(), CardStackListener {
             duration = 600
             start()
         }
+    }
+
+    private fun openTutorialFragment(tutorialText: String) {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.container, TutorialFragment.newInstance(tutorialText))
+            .commit()
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {
