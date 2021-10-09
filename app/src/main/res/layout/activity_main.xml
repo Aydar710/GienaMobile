@@ -49,25 +49,40 @@
             app:layout_constraintTop_toTopOf="@id/tvMoney" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toTopOf="@id/card_stack_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewAccountInfo"
+        tools:text="У Вас есть возможность при" />
+
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/card_stack_view"
         android:layout_width="0dp"
         android:layout_height="500dp"
-        android:padding="24dp"
-        app:layout_constraintVertical_bias="0.4"
         android:clipToPadding="false"
+        android:padding="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/clHeader" />
+        app:layout_constraintTop_toBottomOf="@id/clHeader"
+        app:layout_constraintVertical_bias="0.4" />
 
     <ImageView
         android:id="@+id/ivVatabe"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/ic_vatabe_shock"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="parent"
-        android:layout_height="wrap_content" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

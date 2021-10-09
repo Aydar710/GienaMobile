@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         setupCardStackView()
 
         viewModel.requestEvent()
-        viewModel.requestEvent()
 
         observeViewModel()
     }
@@ -43,6 +42,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     private fun observeViewModel() {
         with(viewModel) {
             currentCard.observe(this@MainActivity) {
+                setQuestionText(it.text)
                 adapter.addEvent(it)
                 setUserBalance(it.user.moneyQty)
             }
@@ -94,16 +94,21 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         }
     }
 
+    private fun setQuestionText(text: String) {
+        binding.tvQuestion.text = text
+    }
+
     private fun showVatabe() {
-        ObjectAnimator.ofFloat(binding.ivVatabe, "translationY", (binding.ivVatabe.height * -1).toFloat()).apply {
-            duration = 500
-            start()
-        }
+        ObjectAnimator.ofFloat(binding.ivVatabe, "translationY", (binding.ivVatabe.height * -1).toFloat())
+            .apply {
+                duration = 600
+                start()
+            }
     }
 
     private fun hideVatabe() {
         ObjectAnimator.ofFloat(binding.ivVatabe, "translationY", (binding.ivVatabe.height).toFloat()).apply {
-            duration = 500
+            duration = 600
             start()
         }
     }
