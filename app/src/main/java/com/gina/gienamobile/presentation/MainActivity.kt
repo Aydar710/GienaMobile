@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     }
 
     private fun showVatabe() {
-        ObjectAnimator.ofFloat(binding.ivVatabe, "translationY", (binding.ivVatabe.height * -1).toFloat())
+        ObjectAnimator.ofFloat(binding.vatabeView, "translationY", (binding.vatabeView.height * -1).toFloat())
             .apply {
                 duration = 600
                 start()
@@ -107,7 +107,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     }
 
     private fun hideVatabe() {
-        ObjectAnimator.ofFloat(binding.ivVatabe, "translationY", (binding.ivVatabe.height).toFloat()).apply {
+        ObjectAnimator.ofFloat(binding.vatabeView, "translationY", (binding.vatabeView.height).toFloat()).apply {
             duration = 600
             start()
         }
