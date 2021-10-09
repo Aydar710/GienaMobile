@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#14315B">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvEnterName"
+        android:layout_width="0dp"
+        android:layout_height="250dp"
+        android:layout_marginHorizontal="24dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clEnterName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00A5FF"
+            android:paddingVertical="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvCardsToSalary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Введите ваше имя"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/bg_name_edit_text"
+        android:elevation="5dp"
+        android:padding="8dp"
+        app:layout_constraintVertical_bias="0.5"
+        android:paddingHorizontal="2dp"
+        app:layout_constraintBottom_toBottomOf="@id/cvEnterName"
+        app:layout_constraintEnd_toEndOf="@id/cvEnterName"
+        app:layout_constraintStart_toStartOf="@id/cvEnterName"
+        app:layout_constraintTop_toTopOf="@id/cvEnterName"
+        tools:text="+asdasd" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="18dp"
+        android:backgroundTint="#00A5FF"
+        android:text="Начать"
+        app:cornerRadius="4dp"
+        app:layout_constraintBottom_toBottomOf="@id/cvEnterName"
+        app:layout_constraintEnd_toEndOf="@id/cvEnterName"
+        app:layout_constraintStart_toStartOf="@id/cvEnterName"
+        app:layout_constraintTop_toTopOf="@id/cvEnterName"
+        app:layout_constraintVertical_bias="0.9" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

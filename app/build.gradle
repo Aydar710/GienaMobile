@@ -22,13 +22,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-            buildConfigField "String", "API_URL", "\"https://\""
+            buildConfigField "String", "API_URL", "\"http://89.223.71.27:8000/api/\""
         }
 
         debug {
             minifyEnabled false
 
-            buildConfigField "String", "API_URL", "\"https://\""
+            buildConfigField "String", "API_URL", "\"http://89.223.71.27:8000/api/\""
         }
     }
     compileOptions {

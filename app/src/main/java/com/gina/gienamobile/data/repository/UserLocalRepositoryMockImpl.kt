@@ -4,7 +4,13 @@ import com.gina.gienamobile.data.model.User
 
 class UserLocalRepositoryMockImpl : UserLocalRepository {
 
+    private var currentUser = User(id = 1, daysBeforePayday = 3, eventsQty = 3, moneyQty = 1, questionsQty = 12)
+
     override fun getCurrentUser(): User {
-        return User(daysBeforePayday = 3, eventsQty = 3, moneyQty = 1, id = 1, questionsQty = 12)
+        return currentUser
+    }
+
+    override fun saveCurrentUser(user: User) {
+        currentUser = user
     }
 }

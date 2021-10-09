@@ -4,5 +4,7 @@ import com.gina.gienamobile.data.model.User
 
 interface UserLocalRepository {
 
-    fun getCurrentUser() : User
+    fun getCurrentUser(): User
+
+    fun saveCurrentUser(user: User)
 }
