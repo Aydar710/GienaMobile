@@ -1,11 +1,14 @@
 package com.gina.gienamobile.presentation
 
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DefaultItemAnimator
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.gina.gienamobile.R
 import com.gina.gienamobile.R.layout
 import com.gina.gienamobile.databinding.ActivityMainBinding
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
@@ -40,6 +43,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         with(viewModel) {
             currentCard.observe(this@MainActivity) {
                 adapter.addEvent(it)
+                setUserBalance(it.user.moneyQty)
             }
         }
     }
@@ -62,6 +66,30 @@ class MainActivity : AppCompatActivity(), CardStackListener {
             if (this is DefaultItemAnimator) {
                 supportsChangeAnimations = false
             }
+        }
+    }
+
+    //Achtung refactor and throw it away!!!!!
+    private fun setUserBalance(balance: Int) {
+        try {
+            val currentBalance =
+                binding.tvMoney.text.toString().takeIf { !it.isNullOrBlank() }?.split(" ")?.get(0)?.toInt()
+            binding.tvMoney.text = "$balance ₽"
+            currentBalance?.let {
+                if (balance > currentBalance) {
+                    binding.tvMoney.setTextColor(resources.getColor(R.color.green))
+                    Handler().postDelayed({
+                        binding.tvMoney.setTextColor(resources.getColor(R.color.white))
+                    }, 500)
+                } else {
+                    binding.tvMoney.setTextColor(resources.getColor(R.color.red))
+                    Handler().postDelayed({
+                        binding.tvMoney.setTextColor(resources.getColor(R.color.white))
+                    }, 500)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("", "", e)
         }
     }
 
