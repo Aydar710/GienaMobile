@@ -40,10 +40,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
 
     private fun observeViewModel() {
         with(viewModel) {
-            currentCard.observe(this@MainActivity) {
-//                setQuestionText(it.text)
-//                adapter.addEvent(it)
-//                setUserBalance(it.user.moneyQty)
+            currentQuestion.observe(this@MainActivity) {
+                setQuestionText(it.question.text)
+                adapter.addEvent(it)
+                setUserBalance(it.user.moneyQty)
             }
         }
     }

@@ -7,11 +7,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.gina.gienamobile.R
 import com.gina.gienamobile.R.layout
-import com.gina.gienamobile.domain.model.CardLocal
+import com.gina.gienamobile.domain.model.BaseCardLocal
+import com.gina.gienamobile.domain.model.EventCardLocal
+import com.gina.gienamobile.domain.model.QuestionCardLocal
+import com.gina.gienamobile.domain.model.UserLocal
 import com.gina.gienamobile.presentation.main.CardStackAdapter.ViewHolder
 
 class CardStackAdapter(
-    private var spots: MutableList<CardLocal> = mutableListOf()
+    private var spots: MutableList<BaseCardLocal> = mutableListOf()
 ) : RecyclerView.Adapter<ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,40 +30,45 @@ class CardStackAdapter(
         return spots.size
     }
 
-    fun setSpots(spots: List<CardLocal>) {
+    fun setSpots(spots: List<BaseCardLocal>) {
         this.spots = spots.toMutableList()
     }
 
-    fun getSpots(): List<CardLocal> {
+    fun getSpots(): List<BaseCardLocal> {
         return spots
     }
 
-    fun addEvent(event: CardLocal) {
+    fun addEvent(event: BaseCardLocal) {
         spots.add(event)
         notifyDataSetChanged()
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        //        val name: TextView = view.findViewById(R.id.item_text)
-        /*var city: TextView = view.findViewById(R.id.item_city)
-        var image: ImageView = view.findViewById(R.id.item_image)*/
         val cardsToSalary = view.findViewById<TextView>(R.id.tvCardsToSalary)
 
-        fun bind(cardLocal: CardLocal) {
-//            name.text = cardLocal.text
+        fun bind(cardLocal: BaseCardLocal) {
+            when (cardLocal) {
+                is QuestionCardLocal -> {
+                    setDaysBeforeSalary(cardLocal.user)
+                }
+                is EventCardLocal -> {
+                    setDaysBeforeSalary(cardLocal.user)
+                }
+            }
+
             /*Glide.with(holder.image)
                     .load(spot.url)
                     .into(holder.image)*/
-            itemView.setOnClickListener { v ->
-            }
+        }
 
-            /*val text = itemView.context.resources.getQuantityString(
+        private fun setDaysBeforeSalary(user: UserLocal) {
+            val text = itemView.context.resources.getQuantityString(
                 R.plurals.cards_to_salary,
-                cardLocal..daysBeforePayday,
-                cardLocal.user.daysBeforePayday
-            )*/
-//            cardsToSalary.text = text
+                user.daysBeforePayday,
+                user.daysBeforePayday
+            )
+            cardsToSalary.text = text
         }
     }
 }
