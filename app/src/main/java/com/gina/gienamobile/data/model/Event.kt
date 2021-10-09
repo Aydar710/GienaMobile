@@ -7,6 +7,7 @@ data class Event(
     override val id: Number,
     @SerializedName("text")
     override val text: String,
+    override val user : User,
     @SerializedName("money_qty")
     val moneyQty: Number
-) : Card(id, text)
+) : Card(id, text, user)

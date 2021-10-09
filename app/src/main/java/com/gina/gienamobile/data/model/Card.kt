@@ -7,4 +7,5 @@ abstract class Card(
     open val id: Number,
     @SerializedName("text")
     open val text: String,
+    open val user : User
 )

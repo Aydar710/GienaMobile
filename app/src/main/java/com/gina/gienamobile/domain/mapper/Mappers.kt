@@ -24,7 +24,8 @@ fun Event.toEventLocal(): EventLocal =
     EventLocal(
         id = id,
         text = text,
-        moneyQty = moneyQty
+        moneyQty = moneyQty,
+        user = user.toUserLocal()
     )
 
 fun Question.toQuestionLocal(): QuestionLocal =
@@ -32,17 +33,8 @@ fun Question.toQuestionLocal(): QuestionLocal =
         id = id,
         text = text,
         negativeDecisionAnswer = negativeDecisionAnswer.toAnswerLocal(),
-        positiveDecisionAnswer = positiveDecisionAnswer.toAnswerLocal()
-    )
-
-fun User.toUserLocal(): UserLocal =
-    UserLocal(
-        id = id,
-        username = username,
-        moneyQty = moneyQty,
-        role = role,
-        questions = questions?.map { it.toQuestionLocal() },
-        events = events?.map { it.toEventLocal() }
+        positiveDecisionAnswer = positiveDecisionAnswer.toAnswerLocal(),
+        user = user.toUserLocal()
     )
 
 fun Card.toCardLocal(): CardLocal {
@@ -52,3 +44,14 @@ fun Card.toCardLocal(): CardLocal {
         else -> throw NotSupportedEventException(this)
     }
 }
+
+fun User.toUserLocal(): UserLocal =
+    UserLocal(
+        id = id,
+        username = username,
+        moneyQty = moneyQty,
+        role = role,
+        questions = questions?.map { it.toQuestionLocal() },
+        events = events?.map { it.toEventLocal() },
+        cardToSalary = cardToSalary
+    )

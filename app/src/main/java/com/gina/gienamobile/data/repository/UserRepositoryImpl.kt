@@ -5,7 +5,7 @@ import com.gina.gienamobile.data.model.User
 
 class UserRepositoryImpl() : UserRepository {
     override suspend fun getUserById(id: String): Result<User> {
-        return Result.success(User(0, "Username", 1000, Roles.STUDENT))
+        return Result.success(User(0, "Username", 1000, Roles.STUDENT, cardToSalary = 3))
     }
 
     override suspend fun setUserInfo(user: User): Result<Unit> {

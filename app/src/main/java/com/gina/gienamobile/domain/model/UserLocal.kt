@@ -8,5 +8,6 @@ data class UserLocal(
     val moneyQty: Int,
     val role: Roles,
     val questions: List<QuestionLocal>? = null,
-    val events: List<EventLocal>? = null
+    val events: List<EventLocal>? = null,
+    val cardToSalary: Int
 )

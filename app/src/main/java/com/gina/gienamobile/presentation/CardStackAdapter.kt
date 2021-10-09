@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.gina.gienamobile.R
+import com.gina.gienamobile.domain.model.CardLocal
 
 class CardStackAdapter(
-        private var spots: MutableList<Event> = mutableListOf()
+    private var spots: MutableList<CardLocal> = mutableListOf()
 ) : RecyclerView.Adapter<CardStackAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -18,37 +18,47 @@ class CardStackAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val spot = spots[position]
-        holder.name.text = "${spot.text}. ${spot.text}"
-        /*Glide.with(holder.image)
-                .load(spot.url)
-                .into(holder.image)*/
-        holder.itemView.setOnClickListener { v ->
-            Toast.makeText(v.context, spot.text, Toast.LENGTH_SHORT).show()
-        }
+        holder.bind(spots[position])
     }
 
     override fun getItemCount(): Int {
         return spots.size
     }
 
-    fun setSpots(spots: List<Event>) {
-        this.spots = spots as MutableList<Event>
+    fun setSpots(spots: List<CardLocal>) {
+        this.spots = spots.toMutableList()
     }
 
-    fun getSpots(): List<Event> {
+    fun getSpots(): List<CardLocal> {
         return spots
     }
 
-    fun addEvent(event : Event){
+    fun addEvent(event: CardLocal) {
         spots.add(event)
         notifyDataSetChanged()
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView = view.findViewById(R.id.item_text)
+
+        //        val name: TextView = view.findViewById(R.id.item_text)
         /*var city: TextView = view.findViewById(R.id.item_city)
         var image: ImageView = view.findViewById(R.id.item_image)*/
-    }
+        val cardsToSalary = view.findViewById<TextView>(R.id.tvCardsToSalary)
 
+        fun bind(cardLocal: CardLocal) {
+//            name.text = cardLocal.text
+            /*Glide.with(holder.image)
+                    .load(spot.url)
+                    .into(holder.image)*/
+            itemView.setOnClickListener { v ->
+            }
+
+            val text = itemView.context.resources.getQuantityString(
+                R.plurals.cards_to_salary,
+                cardLocal.user.cardToSalary,
+                cardLocal.user.cardToSalary
+            )
+            cardsToSalary.text = text
+        }
+    }
 }

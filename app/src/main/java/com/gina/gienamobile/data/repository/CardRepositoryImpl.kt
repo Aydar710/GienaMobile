@@ -1,14 +1,17 @@
 package com.gina.gienamobile.data.repository
 
+import com.gina.gienamobile.data.enums.Roles.STUDENT
 import com.gina.gienamobile.data.model.Answer
 import com.gina.gienamobile.data.model.Card
 import com.gina.gienamobile.data.model.Question
+import com.gina.gienamobile.data.model.User
 
 class CardRepositoryImpl : CardRepository {
 
     override suspend fun getCard(userId: Int): Result<Card> {
         val negativeDecisionAnswer = Answer(1, "Негативный ответ", 123, "Reply negative")
         val positiveDecisionAnswer = Answer(1, "Позитивный ответ", -123, "Reply positive")
-        return Result.success(Question(0, "Card text", negativeDecisionAnswer, positiveDecisionAnswer))
+        val user = User(id = 1, username = "Vatabe", 123, STUDENT, cardToSalary = 5)
+        return Result.success(Question(0, "Card text", user, negativeDecisionAnswer, positiveDecisionAnswer))
     }
 }

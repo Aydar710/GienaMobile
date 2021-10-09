@@ -1,7 +1,6 @@
 package com.gina.gienamobile.presentation
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
@@ -40,8 +39,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     private fun observeViewModel() {
         with(viewModel) {
             currentCard.observe(this@MainActivity) {
-//                adapter.addEvent(it)
-                Log.d("MainAct", "observeViewModel: $it")
+                adapter.addEvent(it)
             }
         }
     }
@@ -55,7 +53,7 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         manager.setMaxDegree(20.0f)
         manager.setDirections(Direction.HORIZONTAL)
         manager.setCanScrollHorizontal(true)
-        manager.setCanScrollVertical(true)
+//        manager.setCanScrollVertical(true)
         manager.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
         manager.setOverlayInterpolator(LinearInterpolator())
         binding.cardStackView.layoutManager = manager

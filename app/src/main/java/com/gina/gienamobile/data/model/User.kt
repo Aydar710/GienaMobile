@@ -15,5 +15,6 @@ data class User(
     @SerializedName("questions")
     val questions: List<Question>? = null,
     @SerializedName("events")
-    val events: List<Event>? = null
+    val events: List<Event>? = null,
+    val cardToSalary : Int
 )

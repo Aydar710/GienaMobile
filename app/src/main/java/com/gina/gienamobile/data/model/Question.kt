@@ -7,8 +7,9 @@ data class Question(
     override val id: Number,
     @SerializedName("text")
     override val text: String,
+    override val user: User,
     @SerializedName("negative_decision_answer")
     val negativeDecisionAnswer: Answer,
     @SerializedName("positive_decision_answer")
     val positiveDecisionAnswer: Answer
-) : Card(id, text)
+) : Card(id, text, user)
