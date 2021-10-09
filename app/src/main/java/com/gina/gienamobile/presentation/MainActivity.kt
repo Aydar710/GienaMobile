@@ -1,5 +1,6 @@
 package com.gina.gienamobile.presentation
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -93,6 +94,20 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         }
     }
 
+    private fun showVatabe() {
+        ObjectAnimator.ofFloat(binding.ivVatabe, "translationY", (binding.ivVatabe.height * -1).toFloat()).apply {
+            duration = 500
+            start()
+        }
+    }
+
+    private fun hideVatabe() {
+        ObjectAnimator.ofFloat(binding.ivVatabe, "translationY", (binding.ivVatabe.height).toFloat()).apply {
+            duration = 500
+            start()
+        }
+    }
+
     override fun onCardDragging(direction: Direction?, ratio: Float) {
     }
 
@@ -100,15 +115,11 @@ class MainActivity : AppCompatActivity(), CardStackListener {
         viewModel.requestEvent()
     }
 
-    override fun onCardRewound() {
-    }
+    override fun onCardRewound() {}
 
-    override fun onCardCanceled() {
-    }
+    override fun onCardCanceled() {}
 
-    override fun onCardAppeared(view: View?, position: Int) {
-    }
+    override fun onCardAppeared(view: View?, position: Int) {}
 
-    override fun onCardDisappeared(view: View?, position: Int) {
-    }
+    override fun onCardDisappeared(view: View?, position: Int) {}
 }
