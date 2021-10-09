@@ -1,15 +1,20 @@
 package com.gina.gienamobile.presentation
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.gina.gienamobile.domain.GetCardInteractor
+import com.gina.gienamobile.domain.model.CardLocal
 import com.gina.gienamobile.presentation.utils.SingleLiveEvent
-import java.util.Date
+import kotlinx.coroutines.launch
 
-class MainViewModel : ViewModel() {
+class MainViewModel(private val getCardInteractor: GetCardInteractor) : ViewModel() {
 
-    val currentCard = SingleLiveEvent<Event>()
+    val currentCard = SingleLiveEvent<CardLocal>()
 
-    fun requestEvent() {
-        val event = Event("text ${Date().time}")
-        currentCard.postValue(event)
+    fun requestEvent() = viewModelScope.launch {
+        val cardLocal = getCardInteractor.invoke()
+        cardLocal.getOrNull()?.let {
+            currentCard.postValue(it)
+        }
     }
 }

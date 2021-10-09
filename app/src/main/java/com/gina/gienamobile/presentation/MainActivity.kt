@@ -1,6 +1,7 @@
 package com.gina.gienamobile.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
@@ -39,7 +40,8 @@ class MainActivity : AppCompatActivity(), CardStackListener {
     private fun observeViewModel() {
         with(viewModel) {
             currentCard.observe(this@MainActivity) {
-                adapter.addEvent(it)
+//                adapter.addEvent(it)
+                Log.d("MainAct", "observeViewModel: $it")
             }
         }
     }
