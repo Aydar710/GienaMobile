@@ -1,9 +1,9 @@
 package com.gina.gienamobile.domain.excpetions
 
-import com.gina.gienamobile.data.model.Card
+import com.gina.gienamobile.data.model.BaseCardResponse
 
-class NotSupportedEventException(private val card: Card) : Exception() {
+class NotSupportedEventException(private val baseCardResponse: BaseCardResponse) : Exception() {
 
     override val message: String
-        get() = "Not supported event - $card"
+        get() = "Not supported event - $baseCardResponse"
 }

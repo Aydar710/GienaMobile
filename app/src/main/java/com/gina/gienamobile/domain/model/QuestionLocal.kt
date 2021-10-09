@@ -1,9 +1,11 @@
 package com.gina.gienamobile.domain.model
 
+import com.gina.gienamobile.data.model.Answer
+
 data class QuestionLocal(
-    override val id: Number,
+    val negativeDecisionAnswer: Answer,
+    val positiveDecisionAnswer: Answer,
     override val text: String,
-    override val user: UserLocal,
-    val negativeDecisionAnswer: AnswerLocal,
-    val positiveDecisionAnswer: AnswerLocal
-) : CardLocal(id, text, user)
+    val warnAboutWrongDecision: Boolean,
+    val warningText: String? = null
+) : CardLocal(text)

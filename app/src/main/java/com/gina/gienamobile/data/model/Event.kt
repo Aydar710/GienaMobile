@@ -4,10 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class Event(
     @SerializedName("id")
-    override val id: Number,
-    @SerializedName("text")
-    override val text: String,
-    override val user : User,
+    val id: Int,
     @SerializedName("money_qty")
-    val moneyQty: Number
-) : Card(id, text, user)
+    val moneyQty: Int,
+    @SerializedName("text")
+    override val text: String
+) : Card(text)

@@ -1,14 +1,18 @@
 package com.gina.gienamobile.domain.mapper
 
 import com.gina.gienamobile.data.model.Answer
-import com.gina.gienamobile.data.model.Card
+import com.gina.gienamobile.data.model.BaseCardResponse
 import com.gina.gienamobile.data.model.Event
+import com.gina.gienamobile.data.model.EventResponse
 import com.gina.gienamobile.data.model.Question
+import com.gina.gienamobile.data.model.QuestionResponse
 import com.gina.gienamobile.data.model.User
 import com.gina.gienamobile.domain.excpetions.NotSupportedEventException
 import com.gina.gienamobile.domain.model.AnswerLocal
-import com.gina.gienamobile.domain.model.CardLocal
+import com.gina.gienamobile.domain.model.BaseCardLocal
+import com.gina.gienamobile.domain.model.EventCardLocal
 import com.gina.gienamobile.domain.model.EventLocal
+import com.gina.gienamobile.domain.model.QuestionCardLocal
 import com.gina.gienamobile.domain.model.QuestionLocal
 import com.gina.gienamobile.domain.model.UserLocal
 
@@ -24,34 +28,43 @@ fun Event.toEventLocal(): EventLocal =
     EventLocal(
         id = id,
         text = text,
-        moneyQty = moneyQty,
+        moneyQty = moneyQty
+    )
+
+fun QuestionResponse.toQuestionCardLocal(): QuestionCardLocal =
+    QuestionCardLocal(
+        question = question.toQuestionLocal(),
+        user = user.toUserLocal()
+    )
+
+fun EventResponse.toEventCardLocal(): EventCardLocal =
+    EventCardLocal(
+        event = event.toEventLocal(),
         user = user.toUserLocal()
     )
 
 fun Question.toQuestionLocal(): QuestionLocal =
     QuestionLocal(
-        id = id,
+        negativeDecisionAnswer = negativeDecisionAnswer,
+        positiveDecisionAnswer = positiveDecisionAnswer,
         text = text,
-        negativeDecisionAnswer = negativeDecisionAnswer.toAnswerLocal(),
-        positiveDecisionAnswer = positiveDecisionAnswer.toAnswerLocal(),
-        user = user.toUserLocal()
+        warnAboutWrongDecision = warnAboutWrongDecision,
+        warningText = warningText
     )
 
-fun Card.toCardLocal(): CardLocal {
+fun BaseCardResponse.toBaseCardLocal(): BaseCardLocal {
     return when (this) {
-        is Question -> toQuestionLocal()
-        is Event -> toEventLocal()
+        is QuestionResponse -> toQuestionCardLocal()
+        is EventResponse -> toEventCardLocal()
         else -> throw NotSupportedEventException(this)
     }
 }
 
 fun User.toUserLocal(): UserLocal =
     UserLocal(
-        id = id,
-        username = username,
+        daysBeforePayday = daysBeforePayday,
+        eventsQty = eventsQty,
         moneyQty = moneyQty,
-        role = role,
-        questions = questions?.map { it.toQuestionLocal() },
-        events = events?.map { it.toEventLocal() },
-        cardToSalary = cardToSalary
+        id = id,
+        questionsQty = questionsQty
     )

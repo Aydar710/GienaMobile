@@ -2,8 +2,8 @@ package com.gina.gienamobile.domain
 
 import com.gina.gienamobile.data.repository.CardRepository
 import com.gina.gienamobile.data.repository.UserLocalRepository
-import com.gina.gienamobile.domain.mapper.toCardLocal
-import com.gina.gienamobile.domain.model.CardLocal
+import com.gina.gienamobile.domain.mapper.toBaseCardLocal
+import com.gina.gienamobile.domain.model.BaseCardLocal
 import kotlin.Result.Companion
 
 class GetCardInteractor(
@@ -11,11 +11,11 @@ class GetCardInteractor(
     private val userLocalRepository: UserLocalRepository
 ) {
 
-    suspend operator fun invoke(): Result<CardLocal?> {
+    suspend operator fun invoke(): Result<BaseCardLocal?> {
         val currentUser = userLocalRepository.getCurrentUser()
         val cardResult = cardRepository.getCard(currentUser.id)
         cardResult.getOrNull()?.let { card ->
-            return Companion.success(card.toCardLocal())
+            return Companion.success(card.toBaseCardLocal())
         } ?: return Companion.failure(Exception("Not supported Event"))
     }
 }

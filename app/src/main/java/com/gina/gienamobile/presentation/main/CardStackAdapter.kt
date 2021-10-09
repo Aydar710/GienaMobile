@@ -55,12 +55,12 @@ class CardStackAdapter(
             itemView.setOnClickListener { v ->
             }
 
-            val text = itemView.context.resources.getQuantityString(
+            /*val text = itemView.context.resources.getQuantityString(
                 R.plurals.cards_to_salary,
-                cardLocal.user.cardToSalary,
-                cardLocal.user.cardToSalary
-            )
-            cardsToSalary.text = text
+                cardLocal..daysBeforePayday,
+                cardLocal.user.daysBeforePayday
+            )*/
+//            cardsToSalary.text = text
         }
     }
 }
