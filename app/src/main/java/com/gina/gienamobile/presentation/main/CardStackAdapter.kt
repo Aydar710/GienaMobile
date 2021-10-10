@@ -23,7 +23,7 @@ class CardStackAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(spots[position])
+        holder.bind(spots.last())
     }
 
     override fun getItemCount(): Int {
@@ -46,20 +46,19 @@ class CardStackAdapter(
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val cardsToSalary = view.findViewById<TextView>(R.id.tvCardsToSalary)
+        val tvEvent = view.findViewById<TextView>(R.id.tvEvent)
 
         fun bind(cardLocal: BaseCardLocal) {
             when (cardLocal) {
                 is QuestionCardLocal -> {
                     setDaysBeforeSalary(cardLocal.user)
+                    tvEvent.text = cardLocal.question.text
                 }
                 is EventCardLocal -> {
                     setDaysBeforeSalary(cardLocal.user)
+                    tvEvent.text = cardLocal.event.text
                 }
             }
-
-            /*Glide.with(holder.image)
-                    .load(spot.url)
-                    .into(holder.image)*/
         }
 
         private fun setDaysBeforeSalary(user: UserLocal) {

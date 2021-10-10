@@ -36,19 +36,17 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
         viewModel.requestEvent()
 
         observeViewModel()
-
-        Handler().postDelayed({
-            binding.vatabeView.setSpeech("Какое красивое имя! А чем ты занимаешься?", 15)
-            showVatabe()
-        }, 100)
     }
 
     private fun observeViewModel() {
         with(viewModel) {
             currentQuestion.observe(this@MainActivity) {
-                setQuestionText(it.question.text)
                 adapter.addEvent(it)
-                setUserBalance(it.user.moneyQty)
+            }
+
+            currentEvent.observe(this@MainActivity) {
+                adapter.addEvent(it)
+                setUserBalance(it.event.moneyQty)
             }
         }
     }
@@ -96,10 +94,6 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
         } catch (e: Exception) {
             Log.e("", "", e)
         }
-    }
-
-    private fun setQuestionText(text: String) {
-//        binding.tvQuestion.text = text
     }
 
     private fun showVatabe() {
