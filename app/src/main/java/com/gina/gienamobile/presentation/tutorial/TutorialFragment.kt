@@ -10,8 +10,11 @@ import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.gina.gienamobile.R
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TutorialFragment : Fragment(R.layout.fragment_tutorial) {
+
+    private val viewModel: TutorialViewModel by viewModel()
 
     companion object {
 
@@ -58,6 +61,7 @@ class TutorialFragment : Fragment(R.layout.fragment_tutorial) {
         fragmentArgs.link?.let { link ->
             tvMoreInfo?.isVisible = true
             tvMoreInfo?.setOnClickListener {
+                viewModel.userOpenedLink(link)
                 openPageInLink(link)
             }
         } ?: run {

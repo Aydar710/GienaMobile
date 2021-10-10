@@ -1,4 +1,4 @@
-package com.gina.gienamobile.domain
+package com.gina.gienamobile.domain.interactors
 
 import com.gina.gienamobile.data.repository.CardRepository
 import com.gina.gienamobile.data.repository.UserLocalRepository

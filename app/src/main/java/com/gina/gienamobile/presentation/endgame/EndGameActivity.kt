@@ -6,15 +6,19 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.gina.gienamobile.R
 import com.gina.gienamobile.presentation.endgame.END_TYPE.BAD
 import com.gina.gienamobile.presentation.endgame.END_TYPE.GOOD
 import com.gina.gienamobile.presentation.endgame.END_TYPE.NORMAL
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class EndGameActivity : AppCompatActivity(R.layout.activity_end_game) {
+class EndGameActivity : AppCompatActivity(com.gina.gienamobile.R.layout.activity_end_game) {
+
+    private val viewModel: EndGameViewModel by viewModel()
+
     companion object {
 
         const val ARG_END_TYPE = "ArgEndType"
+        const val PLAY_MARKET_LINK = "https://play.google.com/store/apps/details?id=ru.vtb.invest&hl=ru&gl=US"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,21 +36,23 @@ class EndGameActivity : AppCompatActivity(R.layout.activity_end_game) {
     }
 
     private fun setVtbInvestmentsBtnClickListener() {
-        findViewById<Button>(R.id.btnInvestments).setOnClickListener {
-            val uri: Uri = Uri.parse("https://play.google.com/store/apps/details?id=ru.vtb.invest&hl=ru&gl=US")
+        findViewById<Button>(com.gina.gienamobile.R.id.btnInvestments).setOnClickListener {
+
+            val uri: Uri = Uri.parse(PLAY_MARKET_LINK)
             val intent = Intent(Intent.ACTION_VIEW, uri)
             if (intent.resolveActivity(packageManager) != null) {
+                viewModel.userOpenedLink(PLAY_MARKET_LINK)
                 startActivity(intent)
             }
         }
     }
 
     private fun showEnding(endType: END_TYPE) {
-        val rootView = findViewById<ConstraintLayout>(R.id.flRoot)
+        val rootView = findViewById<ConstraintLayout>(com.gina.gienamobile.R.id.flRoot)
         when (endType) {
-            BAD -> rootView.background = resources.getDrawable(R.drawable.bg_bad_ending)
-            NORMAL -> rootView.background = resources.getDrawable(R.drawable.bg_normal_ending)
-            GOOD -> rootView.background = resources.getDrawable(R.drawable.bg_good_ending)
+            BAD -> rootView.background = resources.getDrawable(com.gina.gienamobile.R.drawable.bg_bad_ending)
+            NORMAL -> rootView.background = resources.getDrawable(com.gina.gienamobile.R.drawable.bg_normal_ending)
+            GOOD -> rootView.background = resources.getDrawable(com.gina.gienamobile.R.drawable.bg_good_ending)
         }
     }
 }
