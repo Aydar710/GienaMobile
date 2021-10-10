@@ -1,11 +1,13 @@
 package com.gina.gienamobile.presentation.entername
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gina.gienamobile.R
 import com.gina.gienamobile.databinding.ActivityEnterNameBinding
+import com.gina.gienamobile.presentation.segmentation.SegmentationActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class EnterNameActivity : AppCompatActivity(R.layout.activity_enter_name) {
@@ -34,7 +36,7 @@ class EnterNameActivity : AppCompatActivity(R.layout.activity_enter_name) {
 
     private fun observeViewModel() {
         viewModel.openSelectClassActivity.observe(this) {
-
+            startActivity(Intent(this, SegmentationActivity::class.java))
         }
     }
 
