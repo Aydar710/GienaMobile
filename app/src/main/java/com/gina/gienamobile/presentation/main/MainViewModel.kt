@@ -12,15 +12,22 @@ class MainViewModel(private val getCardInteractor: GetCardInteractor) : ViewMode
 
     val currentQuestion = SingleLiveEvent<QuestionCardLocal>()
     val currentEvent = SingleLiveEvent<EventCardLocal>()
+    private var leftCardsToSalary = 4
 
     fun requestEvent() = viewModelScope.launch {
+        leftCardsToSalary--
+        if (leftCardsToSalary == 0) {
+            leftCardsToSalary = 4
+        }
         val cardLocal = getCardInteractor.invoke()
         cardLocal?.let {
             when (it) {
                 is QuestionCardLocal -> {
+                    it.user.daysBeforePayday = leftCardsToSalary
                     currentQuestion.postValue(it)
                 }
                 is EventCardLocal -> {
+                    it.user.daysBeforePayday = leftCardsToSalary
                     currentEvent.postValue(it)
                 }
             }

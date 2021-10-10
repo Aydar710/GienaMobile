@@ -2,7 +2,7 @@
     <string name="app_name">GienaMobile</string>
 
     <plurals name="cards_to_salary">
-        <item quantity="zero">%1$d карточек до зарплаты</item>
+        <item quantity="zero">%1$d карточка до зарплаты</item>
         <item quantity="one">%1$d карточка до зарплаты</item>
         <item quantity="two">%1$d карточки до зарплаты</item>
         <item quantity="few">%1$d карточки до зарплаты</item>

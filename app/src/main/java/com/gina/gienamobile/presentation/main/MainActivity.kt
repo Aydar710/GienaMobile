@@ -7,24 +7,34 @@ import android.util.Log
 import android.view.View
 import android.view.animation.LinearInterpolator
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DefaultItemAnimator
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.gina.gienamobile.R
 import com.gina.gienamobile.databinding.ActivityMainBinding
+import com.gina.gienamobile.domain.model.BaseCardLocal
+import com.gina.gienamobile.domain.model.EventCardLocal
+import com.gina.gienamobile.domain.model.QuestionCardLocal
 import com.gina.gienamobile.presentation.tutorial.TutorialFragment
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.Direction
+import com.yuyakaido.android.cardstackview.Direction.Right
 import com.yuyakaido.android.cardstackview.StackFrom
 import com.yuyakaido.android.cardstackview.SwipeableMethod
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+// Never write logic in view...
 class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListener {
 
     private val viewModel: MainViewModel by viewModel()
     private val binding: ActivityMainBinding by viewBinding()
     private val manager by lazy { CardStackLayoutManager(this, this) }
     private val adapter by lazy { CardStackAdapter() }
+
+    private var currentCard: BaseCardLocal? = null
+
+    private var money: Int = 1000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,17 +46,30 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
         viewModel.requestEvent()
 
         observeViewModel()
+
+        setUserBalance(money)
     }
 
     private fun observeViewModel() {
         with(viewModel) {
             currentQuestion.observe(this@MainActivity) {
+                this@MainActivity.currentCard = it
                 adapter.addEvent(it)
+                binding.tvNegativeAnswer.text = it.question.negativeDecisionAnswer.answerText
+                binding.tvPositiveAnswer.text = it.question.positiveDecisionAnswer.answerText
+                it.question.warningText?.let {
+                    showVatabe()
+                    binding.vatabeView.setSpeech(it, 15)
+                }
+                binding.tvPositiveAnswer.isVisible = true
+                binding.tvNegativeAnswer.isVisible = true
             }
 
             currentEvent.observe(this@MainActivity) {
+                this@MainActivity.currentCard = null
                 adapter.addEvent(it)
-                setUserBalance(it.event.moneyQty)
+                binding.tvPositiveAnswer.isVisible = false
+                binding.tvNegativeAnswer.isVisible = false
             }
         }
     }
@@ -77,18 +100,20 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
         try {
             val currentBalance =
                 binding.tvMoney.text.toString().takeIf { !it.isNullOrBlank() }?.split(" ")?.get(0)?.toInt()
+
             binding.tvMoney.text = "$balance ₽"
-            currentBalance?.let {
-                if (balance > currentBalance) {
+            currentBalance?.let { currentBalanceNotNull ->
+                if (balance > currentBalanceNotNull) {
                     binding.tvMoney.setTextColor(resources.getColor(R.color.green))
                     Handler().postDelayed({
                         binding.tvMoney.setTextColor(resources.getColor(R.color.white))
                     }, 500)
-                } else {
+                } else if (balance < currentBalanceNotNull) {
                     binding.tvMoney.setTextColor(resources.getColor(R.color.red))
                     Handler().postDelayed({
                         binding.tvMoney.setTextColor(resources.getColor(R.color.white))
                     }, 500)
+                } else {
                 }
             }
         } catch (e: Exception) {
@@ -112,9 +137,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
     }
 
     private fun openTutorialFragment(tutorialText: String) {
-        supportFragmentManager.beginTransaction()
-            .add(R.id.container, TutorialFragment.newInstance(tutorialText))
-            .commit()
+        Handler().postDelayed({
+            supportFragmentManager.beginTransaction()
+                .add(R.id.container, TutorialFragment.newInstance(tutorialText))
+                .commit()
+        }, 500)
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {
@@ -122,11 +149,47 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
 
     override fun onCardSwiped(direction: Direction?) {
         viewModel.requestEvent()
+        hideVatabe()
+
+        val currentCardImmutable = currentCard
+        if (direction == Right) {
+            handleRightSwipe(currentCardImmutable)
+        } else {
+            handleLeftSwipe(currentCardImmutable)
+        }
     }
 
-    override fun onCardRewound() {}
+    private fun handleRightSwipe(currentCardImmutable: BaseCardLocal?) {
+        if (currentCardImmutable is QuestionCardLocal) {
+            money += currentCardImmutable?.question?.positiveDecisionAnswer?.moneyQty?.toInt() ?: 0
+            setUserBalance(money)
+            currentCardImmutable?.question?.positiveDecisionAnswer?.reply?.let {
+                openTutorialFragment(it)
+            }
+        } else if (currentCardImmutable is EventCardLocal) {
+            money += currentCardImmutable.event.moneyQty
+            setUserBalance(money)
+        }
+    }
 
-    override fun onCardCanceled() {}
+    private fun handleLeftSwipe(currentCardImmutable: BaseCardLocal?) {
+        if (currentCardImmutable is QuestionCardLocal) {
+            money += currentCardImmutable?.question?.negativeDecisionAnswer?.moneyQty?.toInt() ?: 0
+            setUserBalance(money)
+            currentCardImmutable?.question?.negativeDecisionAnswer?.reply?.let {
+                openTutorialFragment(it)
+            }
+        } else if (currentCardImmutable is EventCardLocal) {
+            money += currentCardImmutable.event.moneyQty
+            setUserBalance(money)
+        }
+    }
+
+    override fun onCardRewound() {
+    }
+
+    override fun onCardCanceled() {
+    }
 
     override fun onCardAppeared(view: View?, position: Int) {}
 

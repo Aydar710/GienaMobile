@@ -29,6 +29,10 @@ class TutorialFragment : Fragment(R.layout.fragment_tutorial) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = super.onCreateView(inflater, container, savedInstanceState)
         view?.findViewById<TextView>(R.id.tvTutorial)?.text = "${fragmentArgs.tutorialText} "
+
+        view?.setOnClickListener {
+            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+        }
         return view
     }
 
