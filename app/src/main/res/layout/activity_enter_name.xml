@@ -55,12 +55,12 @@
         android:background="@drawable/bg_name_edit_text"
         android:elevation="5dp"
         android:padding="8dp"
-        app:layout_constraintVertical_bias="0.5"
         android:paddingHorizontal="2dp"
         app:layout_constraintBottom_toBottomOf="@id/cvEnterName"
         app:layout_constraintEnd_toEndOf="@id/cvEnterName"
         app:layout_constraintStart_toStartOf="@id/cvEnterName"
         app:layout_constraintTop_toTopOf="@id/cvEnterName"
+        app:layout_constraintVertical_bias="0.5"
         tools:text="+asdasd" />
 
     <com.google.android.material.button.MaterialButton
@@ -76,5 +76,14 @@
         app:layout_constraintStart_toStartOf="@id/cvEnterName"
         app:layout_constraintTop_toTopOf="@id/cvEnterName"
         app:layout_constraintVertical_bias="0.9" />
+
+    <com.gina.gienamobile.presentation.main.VatabeView
+        android:id="@+id/vatabeView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,4 +7,6 @@ interface UserLocalRepository {
     fun getCurrentUser(): User
 
     fun saveCurrentUser(user: User)
+
+    fun setUserName(name: String)
 }

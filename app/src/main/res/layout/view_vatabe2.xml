@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cvVatabeRoot"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivVatabe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_vatabe_shock"
+        app:layout_constraintStart_toEndOf="@id/tvSpeech"
+        app:layout_constraintTop_toBottomOf="@id/tvSpeech" />
+
+    <!--<androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_bubble"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@id/tvSpeech"
+        app:layout_constraintGuide_percent="0.38"
+        app:layout_constraintStart_toStartOf="@id/tvSpeech" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_bubble_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/tvSpeech"
+        app:layout_constraintGuide_percent="0.15"
+        app:layout_constraintTop_toTopOf="@id/tvSpeech" />-->
+
+    <TextView
+        android:id="@+id/tvSpeech"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_bubble"
+        android:gravity="center"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Что ты наделал??!!" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

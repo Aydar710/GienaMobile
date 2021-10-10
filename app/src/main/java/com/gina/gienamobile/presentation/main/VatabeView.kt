@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.gina.gienamobile.R
 import com.gina.gienamobile.R.drawable
 import com.gina.gienamobile.R.layout
@@ -20,11 +19,11 @@ class VatabeView @JvmOverloads constructor(
     private val ivVatabe: ImageView by lazy { findViewById(R.id.ivVatabe) }
 
     init {
-        inflate(context, layout.view_vatabe, this)
+        inflate(context, layout.view_vatabe2, this)
     }
 
     fun setSpeech(speech: String) {
-        tvSpeechView.text = speech
+        tvSpeechView.text = speech.toShieldedString()
     }
 
     fun setGladnessMood() {
@@ -35,9 +34,18 @@ class VatabeView @JvmOverloads constructor(
         ivVatabe.setImageResource(drawable.ic_vatabe_shock)
     }
 
-    private fun increaseBubbleHeight() {
-        val v = findViewById<ImageView>(R.id.ivBuble)
-        val lp = ConstraintLayout.LayoutParams(v.width, v.height * 2)
-        v.layoutParams = lp
+    private fun String.toShieldedString(): String {
+        val works = split(" ".toRegex()).toTypedArray() // get list of works
+        var line = StringBuilder()
+        val result = StringBuilder()
+        for (work in works) {
+            if (line.length + work.length > 25) { //add line to result if it full
+                result.append(line).append("\n")
+                line = StringBuilder() //reset line is empty
+            }
+            line.append(work).append(" ")
+        }
+        result.append(line)
+        return result.toString()
     }
 }
