@@ -1,6 +1,7 @@
 package com.gina.gienamobile.presentation.main
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -15,6 +16,8 @@ import com.gina.gienamobile.databinding.ActivityMainBinding
 import com.gina.gienamobile.domain.model.BaseCardLocal
 import com.gina.gienamobile.domain.model.EventCardLocal
 import com.gina.gienamobile.domain.model.QuestionCardLocal
+import com.gina.gienamobile.presentation.endgame.END_TYPE
+import com.gina.gienamobile.presentation.endgame.EndGameActivity
 import com.gina.gienamobile.presentation.tutorial.TutorialFragment
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
@@ -34,7 +37,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
 
     private var currentCard: BaseCardLocal? = null
 
-    private var money: Int = 1000
+    private var money: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,10 +69,37 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
             }
 
             currentEvent.observe(this@MainActivity) {
-                this@MainActivity.currentCard = null
+                this@MainActivity.currentCard = it
                 adapter.addEvent(it)
                 binding.tvPositiveAnswer.isVisible = false
                 binding.tvNegativeAnswer.isVisible = false
+            }
+
+            openEnding.observe(this@MainActivity) {
+                openEndingScreen()
+            }
+        }
+    }
+
+    private fun openEndingScreen() {
+        when {
+            money > 2050 -> {
+                val intent = Intent(this, EndGameActivity::class.java).apply {
+                    putExtra(EndGameActivity.ARG_END_TYPE, END_TYPE.GOOD.ordinal)
+                }
+                startActivity(intent)
+            }
+            money > 1500 -> {
+                val intent = Intent(this, EndGameActivity::class.java).apply {
+                    putExtra(EndGameActivity.ARG_END_TYPE, END_TYPE.NORMAL.ordinal)
+                }
+                startActivity(intent)
+            }
+            else -> {
+                val intent = Intent(this, EndGameActivity::class.java).apply {
+                    putExtra(EndGameActivity.ARG_END_TYPE, END_TYPE.BAD.ordinal)
+                }
+                startActivity(intent)
             }
         }
     }
@@ -137,11 +167,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
     }
 
     private fun openTutorialFragment(tutorialText: String) {
-        Handler().postDelayed({
-            supportFragmentManager.beginTransaction()
-                .add(R.id.container, TutorialFragment.newInstance(tutorialText))
-                .commit()
-        }, 500)
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+        transaction.replace(R.id.container, TutorialFragment.newInstance(tutorialText))
+        transaction.commit()
     }
 
     override fun onCardDragging(direction: Direction?, ratio: Float) {

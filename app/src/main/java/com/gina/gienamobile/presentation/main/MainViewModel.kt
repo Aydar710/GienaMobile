@@ -12,6 +12,7 @@ class MainViewModel(private val getCardInteractor: GetCardInteractor) : ViewMode
 
     val currentQuestion = SingleLiveEvent<QuestionCardLocal>()
     val currentEvent = SingleLiveEvent<EventCardLocal>()
+    val openEnding = SingleLiveEvent<Unit>()
     private var leftCardsToSalary = 4
 
     fun requestEvent() = viewModelScope.launch {
@@ -31,6 +32,6 @@ class MainViewModel(private val getCardInteractor: GetCardInteractor) : ViewMode
                     currentEvent.postValue(it)
                 }
             }
-        }
+        } ?: openEnding.postValue(Unit)
     }
 }

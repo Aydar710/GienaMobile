@@ -31,7 +31,11 @@ class TutorialFragment : Fragment(R.layout.fragment_tutorial) {
         view?.findViewById<TextView>(R.id.tvTutorial)?.text = "${fragmentArgs.tutorialText} "
 
         view?.setOnClickListener {
-            activity?.supportFragmentManager?.beginTransaction()?.remove(this)?.commit()
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
+                ?.remove(this)
+                ?.commit()
         }
         return view
     }
