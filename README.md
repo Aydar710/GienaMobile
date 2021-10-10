@@ -24,6 +24,6 @@ See GitHub Pages at https://github.com/AminovE99/vatabe-back
 
 - Для запуска приложения выполнить команду:
 ```shell
-...
+./adb shell am start -n com.gina.gienamobile/.presentation.greeting.GreetingActivity
 ```
 , либо найти установленное приложение на телефоне
