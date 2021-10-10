@@ -15,7 +15,7 @@ class MainViewModel(private val getCardInteractor: GetCardInteractor) : ViewMode
 
     fun requestEvent() = viewModelScope.launch {
         val cardLocal = getCardInteractor.invoke()
-        cardLocal.getOrNull()?.let {
+        cardLocal?.let {
             when (it) {
                 is QuestionCardLocal -> {
                     currentQuestion.postValue(it)

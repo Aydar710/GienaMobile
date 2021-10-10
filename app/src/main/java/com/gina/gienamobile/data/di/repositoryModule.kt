@@ -8,7 +8,7 @@ import org.koin.dsl.module
 
 val repositoryModule = module {
 
-    factory<CardRepository> { CardRepositoryImpl() }
+    factory<CardRepository> { CardRepositoryImpl(get()) }
 
     single<UserLocalRepository> { UserLocalRepositoryMockImpl() }
 }

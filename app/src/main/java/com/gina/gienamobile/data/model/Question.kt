@@ -8,9 +8,9 @@ data class Question(
     @SerializedName("positive_decision_answer")
     val positiveDecisionAnswer: Answer,
     @SerializedName("text")
-    override val text: String,
+    val text: String,
     @SerializedName("warn_about_wrong_decision")
     val warnAboutWrongDecision: Boolean,
     @SerializedName("warning_text")
     val warningText: String? = null
-) : Card(text)
+)
