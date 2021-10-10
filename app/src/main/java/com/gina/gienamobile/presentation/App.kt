@@ -3,6 +3,7 @@ package com.gina.gienamobile.presentation
 import android.app.Application
 import com.gina.gienamobile.data.di.dataModules
 import com.gina.gienamobile.domain.di.domainModules
+import com.gina.gienamobile.presentation.entername.di.enterNameModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -16,7 +17,7 @@ class App : Application() {
     private fun initKoin() {
         startKoin {
             androidContext(applicationContext)
-            modules(*mainModules, *dataModules, *domainModules)
+            modules(*mainModules, *dataModules, *domainModules, *enterNameModules)
         }
     }
 }
