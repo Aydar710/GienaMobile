@@ -166,10 +166,10 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
         }
     }
 
-    private fun openTutorialFragment(tutorialText: String) {
+    private fun openTutorialFragment(tutorialText: String, link: String?) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out)
-        transaction.replace(R.id.container, TutorialFragment.newInstance(tutorialText))
+        transaction.replace(R.id.container, TutorialFragment.newInstance(tutorialText, link))
         transaction.commit()
     }
 
@@ -192,8 +192,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
         if (currentCardImmutable is QuestionCardLocal) {
             money += currentCardImmutable?.question?.positiveDecisionAnswer?.moneyQty?.toInt() ?: 0
             setUserBalance(money)
+            val linkToVtb = currentCardImmutable.question.positiveDecisionAnswer.link
             currentCardImmutable?.question?.positiveDecisionAnswer?.reply?.let {
-                openTutorialFragment(it)
+                openTutorialFragment(it, linkToVtb)
             }
         } else if (currentCardImmutable is EventCardLocal) {
             money += currentCardImmutable.event.moneyQty
@@ -205,8 +206,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
         if (currentCardImmutable is QuestionCardLocal) {
             money += currentCardImmutable?.question?.negativeDecisionAnswer?.moneyQty?.toInt() ?: 0
             setUserBalance(money)
+            val linkToVtb = currentCardImmutable.question.positiveDecisionAnswer.link
             currentCardImmutable?.question?.negativeDecisionAnswer?.reply?.let {
-                openTutorialFragment(it)
+                openTutorialFragment(it, linkToVtb)
             }
         } else if (currentCardImmutable is EventCardLocal) {
             money += currentCardImmutable.event.moneyQty

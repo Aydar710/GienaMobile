@@ -10,5 +10,7 @@ data class Answer(
     @SerializedName("money_qty")
     val moneyQty: Number,
     @SerializedName("reply")
-    val reply: String
+    val reply: String,
+    @SerializedName("link")
+    val link: String?
 )

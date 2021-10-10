@@ -6,7 +6,7 @@ import com.gina.gienamobile.data.service.GienaService
 class CardRepositoryImpl(private val service: GienaService) : CardRepository {
 
     override suspend fun getCard(userId: Int): BaseCardResponse? {
-        val response = service.getCard(68)
+        val response = service.getCard(76)
         return response.body()?.baseCardResponse
     }
 }

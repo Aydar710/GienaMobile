@@ -10,8 +10,8 @@ import kotlin.random.Random
 class CardRepositoryMockImpl : CardRepository {
 
     override suspend fun getCard(userId: Int): BaseCardResponse {
-        val negativeDecisionAnswer = Answer(1, "Негативный ответ", 123, "Reply negative")
-        val positiveDecisionAnswer = Answer(1, "Позитивный ответ", -123, "Reply positive")
+        val negativeDecisionAnswer = Answer(1, "Негативный ответ", 123, "Reply negative", null)
+        val positiveDecisionAnswer = Answer(1, "Позитивный ответ", -123, "Reply positive", null)
         val user = User(daysBeforePayday = 3, eventsQty = 3, moneyQty = 1, id = 1, questionsQty = 12)
 
         val questionTexts = listOf(

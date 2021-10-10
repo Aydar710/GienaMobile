@@ -53,4 +53,17 @@
         app:layout_constraintVertical_bias="0"
         tools:text="@string/mock_tutorial" />
 
+    <TextView
+        android:id="@+id/tvMoreInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="72dp"
+        android:text="Более подробную информацию вы можете узнать на сайте ВТБ"
+        android:textColor="#00A5FF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@id/ivTutorialBubble"
+        app:layout_constraintEnd_toEndOf="@id/ivTutorialBubble"
+        app:layout_constraintStart_toStartOf="@id/ivTutorialBubble" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

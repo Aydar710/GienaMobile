@@ -1,8 +1,11 @@
 package com.gina.gienamobile.presentation.endgame
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
-import android.widget.FrameLayout
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.gina.gienamobile.R
 import com.gina.gienamobile.presentation.endgame.END_TYPE.BAD
 import com.gina.gienamobile.presentation.endgame.END_TYPE.GOOD
@@ -24,10 +27,22 @@ class EndGameActivity : AppCompatActivity(R.layout.activity_end_game) {
                 showEnding(endType)
             }
         }
+
+        setVtbInvestmentsBtnClickListener()
+    }
+
+    private fun setVtbInvestmentsBtnClickListener() {
+        findViewById<Button>(R.id.btnInvestments).setOnClickListener {
+            val uri: Uri = Uri.parse("https://play.google.com/store/apps/details?id=ru.vtb.invest&hl=ru&gl=US")
+            val intent = Intent(Intent.ACTION_VIEW, uri)
+            if (intent.resolveActivity(packageManager) != null) {
+                startActivity(intent)
+            }
+        }
     }
 
     private fun showEnding(endType: END_TYPE) {
-        val rootView = findViewById<FrameLayout>(R.id.flRoot)
+        val rootView = findViewById<ConstraintLayout>(R.id.flRoot)
         when (endType) {
             BAD -> rootView.background = resources.getDrawable(R.drawable.bg_bad_ending)
             NORMAL -> rootView.background = resources.getDrawable(R.drawable.bg_normal_ending)

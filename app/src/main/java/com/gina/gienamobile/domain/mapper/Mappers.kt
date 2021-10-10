@@ -21,7 +21,8 @@ fun Answer.toAnswerLocal(): AnswerLocal =
         id = id,
         answerText = answerText,
         moneyQty = moneyQty,
-        reply = reply
+        reply = reply,
+        link = link
     )
 
 fun Event.toEventLocal(): EventLocal =
