@@ -34,26 +34,29 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/ivMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                android:layout_marginEnd="12dp"
+                android:src="@drawable/ic_cards"
+                app:layout_constraintBottom_toBottomOf="@id/tvCardsToSalary"
+                app:layout_constraintEnd_toStartOf="@id/tvCardsToSalary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvCardsToSalary" />
+
             <TextView
                 android:id="@+id/tvCardsToSalary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="@id/viewHeader"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivMoney"
                 app:layout_constraintTop_toTopOf="@id/viewHeader"
                 tools:text="5 карточек до зарплаты" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_cards"
-                app:layout_constraintBottom_toBottomOf="@id/tvCardsToSalary"
-                app:layout_constraintEnd_toStartOf="@id/tvCardsToSalary"
-                app:layout_constraintTop_toTopOf="@id/tvCardsToSalary" />
 
             <TextView
                 android:id="@+id/tvEvent"
@@ -61,9 +64,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
-                android:textColor="@color/white"
                 android:paddingHorizontal="24dp"
                 android:textAlignment="center"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

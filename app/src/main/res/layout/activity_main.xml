@@ -10,7 +10,7 @@
     <View
         android:id="@+id/viewAccountInfo"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="58dp"
         android:background="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/card_stack_view"
         android:layout_width="0dp"
-        android:layout_height="500dp"
+        android:layout_height="400dp"
         android:clipToPadding="false"
         android:padding="24dp"
         app:layout_constraintBottom_toBottomOf="parent"

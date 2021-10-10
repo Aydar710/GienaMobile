@@ -36,6 +36,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
         viewModel.requestEvent()
 
         observeViewModel()
+
+        Handler().postDelayed({
+            binding.vatabeView.setSpeech("Какое красивое имя! А чем ты занимаешься?", 15)
+            showVatabe()
+        }, 100)
     }
 
     private fun observeViewModel() {

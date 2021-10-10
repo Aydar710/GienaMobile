@@ -22,8 +22,8 @@ class VatabeView @JvmOverloads constructor(
         inflate(context, layout.view_vatabe2, this)
     }
 
-    fun setSpeech(speech: String) {
-        tvSpeechView.text = speech.toShieldedString()
+    fun setSpeech(speech: String, shieldLength: Int = 25) {
+        tvSpeechView.text = speech.toShieldedString(shieldLength)
     }
 
     fun setGladnessMood() {
@@ -34,12 +34,12 @@ class VatabeView @JvmOverloads constructor(
         ivVatabe.setImageResource(drawable.ic_vatabe_shock)
     }
 
-    private fun String.toShieldedString(): String {
+    private fun String.toShieldedString(shieldLength: Int): String {
         val works = split(" ".toRegex()).toTypedArray() // get list of works
         var line = StringBuilder()
         val result = StringBuilder()
         for (work in works) {
-            if (line.length + work.length > 25) { //add line to result if it full
+            if (line.length + work.length > shieldLength) { //add line to result if it full
                 result.append(line).append("\n")
                 line = StringBuilder() //reset line is empty
             }
