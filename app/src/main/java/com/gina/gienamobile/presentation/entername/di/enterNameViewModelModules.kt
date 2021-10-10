@@ -6,5 +6,5 @@ import org.koin.dsl.module
 
 val enterNameViewModelModule = module {
 
-    viewModel { EnterNameViewModel(get()) }
+    viewModel { EnterNameViewModel(get(), get()) }
 }

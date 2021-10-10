@@ -1,6 +1,7 @@
 package com.gina.gienamobile.data.service
 
 import com.gina.gienamobile.data.model.CardResponseWrapper
+import com.gina.gienamobile.data.model.User
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -18,4 +19,14 @@ interface GienaService {
     suspend fun sendUserOpenedLinkAnalyticsEvent(
         @Body body: SendUserOpenedLinkAnalyticsEventBody
     ): Response<Unit>
+
+    @POST("user/")
+    suspend fun registerUser(
+        @Body body: RegisterUserBody
+    ) : Response<User>
 }
+
+data class RegisterUserBody(
+    val role: String = "student",
+    val first_name: String
+)

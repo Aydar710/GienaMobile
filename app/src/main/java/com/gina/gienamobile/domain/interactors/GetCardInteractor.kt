@@ -12,7 +12,7 @@ class GetCardInteractor(
 
     suspend operator fun invoke(): BaseCardLocal? {
         val currentUser = userLocalRepository.getCurrentUser()
-        val cardResult = cardRepository.getCard(currentUser.id)
+        val cardResult = cardRepository.getCard(userLocalRepository.currentUserId)
         return cardResult?.toBaseCardLocal()
     }
 }
