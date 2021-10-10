@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#14315B">
+    android:background="@drawable/bg_main">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvEnterName"
@@ -18,7 +18,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clEnterName"
@@ -80,6 +79,7 @@
 
             <TextView
                 android:id="@+id/tvClassName"
+                android:textColor="#00A5FF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:paddingStart="24dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="18dp"
                 android:layout_marginEnd="24dp"
                 android:textAlignment="textStart"
                 app:layout_constraintEnd_toEndOf="parent"

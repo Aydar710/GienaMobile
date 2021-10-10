@@ -1,6 +1,7 @@
 package com.gina.gienamobile.presentation.segmentation
 
 import android.content.Intent
+import android.os.Handler
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -18,7 +19,11 @@ class SegmentationActivity : AppCompatActivity(R.layout.activity_segmentation) {
         super.onResume()
 
         populateClasses()
-        showVatabe()
+
+        Handler().postDelayed({
+            showVatabe()
+        }, 150)
+
 
         setClassImages()
 

@@ -45,7 +45,7 @@ class EnterNameActivity : AppCompatActivity(R.layout.activity_enter_name) {
         binding.vatabeView.setGladnessMood()
         binding.vatabeView.setSpeech(
             "Привет! \\(•◡•)/" +
-                    " Я - Ватабэ, твой персональный финансовый помощник\u2028Как тебя зовут?"
+                    " Я - Ватабэ, твой персональный финансовый помощник\u2028Как тебя зовут?", 16
         )
     }
 }

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#14315B">
+    android:background="@drawable/bg_main">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvEnterName"
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00A5FF"
-            android:paddingVertical="12dp"
+            android:paddingVertical="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -54,8 +54,8 @@
         android:layout_marginHorizontal="16dp"
         android:background="@drawable/bg_name_edit_text"
         android:elevation="5dp"
-        android:padding="8dp"
-        android:paddingHorizontal="2dp"
+        android:paddingVertical="12dp"
+        android:paddingHorizontal="8dp"
         app:layout_constraintBottom_toBottomOf="@id/cvEnterName"
         app:layout_constraintEnd_toEndOf="@id/cvEnterName"
         app:layout_constraintStart_toStartOf="@id/cvEnterName"
@@ -73,6 +73,7 @@
         app:cornerRadius="4dp"
         app:layout_constraintBottom_toBottomOf="@id/cvEnterName"
         app:layout_constraintEnd_toEndOf="@id/cvEnterName"
+        android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="@id/cvEnterName"
         app:layout_constraintTop_toTopOf="@id/cvEnterName"
         app:layout_constraintVertical_bias="0.9" />
