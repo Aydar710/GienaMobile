@@ -94,7 +94,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main), CardStackListene
     }
 
     private fun setQuestionText(text: String) {
-        binding.tvQuestion.text = text
+//        binding.tvQuestion.text = text
     }
 
     private fun showVatabe() {

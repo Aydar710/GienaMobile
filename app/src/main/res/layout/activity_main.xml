@@ -49,21 +49,6 @@
             app:layout_constraintTop_toTopOf="@id/tvMoney" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:id="@+id/tvQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@id/card_stack_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewAccountInfo"
-        tools:text="У Вас есть возможность при" />
-
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/card_stack_view"
         android:layout_width="0dp"
@@ -74,7 +59,38 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/clHeader"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/tvNegativeAnswer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_negative_answer"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@id/tvPositiveAnswer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_stack_view"
+        tools:text="ОТКЛОНИТЬ" />
+
+    <TextView
+        android:id="@+id/tvPositiveAnswer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_positive_answer"
+        android:gravity="center"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvNegativeAnswer"
+        app:layout_constraintTop_toBottomOf="@id/card_stack_view"
+        tools:text="ПРИНЯТЬ" />
 
     <com.gina.gienamobile.presentation.main.VatabeView
         android:id="@+id/vatabeView"
