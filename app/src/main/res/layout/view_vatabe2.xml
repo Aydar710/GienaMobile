@@ -20,6 +20,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_bubble"
+        android:layout_marginStart="32dp"
         android:gravity="center"
         android:paddingHorizontal="12dp"
         android:paddingVertical="14dp"
